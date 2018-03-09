@@ -15,10 +15,17 @@
 					client.subscribe("/topic/hello", function(message) {
 						$("#helloDiv").append(message.body);
 					});
+					client.subscribe("/topic/hellow", function(message) {
+						$("#hellowDiv").append(message.body);
+					});
 				});
 
 				$("#helloButton").click(function() {
 					client.send("/app/hello", {}, JSON.stringify("world"));
+				});
+
+				$("#hellowButton").click(function() {
+					client.send("/app/hellow", {}, JSON.stringify("world"));
 				});
 			});
 		</script>
@@ -26,5 +33,8 @@
 <body>
 <button id="helloButton">hello</button>
 <div id="helloDiv"></div>
+
+<button id="hellowButton">hellow</button>
+<div id="hellowDiv"></div>
 </body>
 </html>

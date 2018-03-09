@@ -1,19 +1,19 @@
 package myapp
 
 import grails.plugin.springwebsocket.GrailsSimpAnnotationMethodMessageHandler
+import grails.plugin.springwebsocket.GrailsWebSocketAnnotationMethodMessageHandler
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import org.springframework.messaging.MessageChannel
 import org.springframework.messaging.SubscribableChannel
 import org.springframework.messaging.simp.SimpMessageSendingOperations
-import org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler
 import org.springframework.stereotype.Component
 
 @CompileStatic
 @Slf4j
-class ProfilingSpringSimpAnnotationMethodMessageHandler extends SimpAnnotationMethodMessageHandler {
+class ProfilingGrailsWebSocketAnnotationMethodMessageHandler extends GrailsWebSocketAnnotationMethodMessageHandler {
 
-	ProfilingSpringSimpAnnotationMethodMessageHandler(SubscribableChannel clientInboundChannel, MessageChannel clientOutboundChannel, SimpMessageSendingOperations brokerTemplate) {
+	ProfilingGrailsWebSocketAnnotationMethodMessageHandler(SubscribableChannel clientInboundChannel, MessageChannel clientOutboundChannel, SimpMessageSendingOperations brokerTemplate) {
 		super(clientInboundChannel, clientOutboundChannel, brokerTemplate)
 	}
 
@@ -23,4 +23,5 @@ class ProfilingSpringSimpAnnotationMethodMessageHandler extends SimpAnnotationMe
 		super.afterPropertiesSet()
 		log.debug "afterPropertiesSet() / detectHandlerMethods() took {} s", (System.currentTimeMillis() - startTime) / 1000
 	}
+
 }

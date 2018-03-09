@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component
 import java.util.concurrent.CountDownLatch
 
 @CompileStatic
-@Component
 @Slf4j
 class ProfilingGrailsSimpAnnotationMethodMessageHandler extends GrailsSimpAnnotationMethodMessageHandler {
 
@@ -33,4 +32,5 @@ class ProfilingGrailsSimpAnnotationMethodMessageHandler extends GrailsSimpAnnota
 		super.afterPropertiesSet()
 		log.debug "afterPropertiesSet() / detectHandlerMethods() took {} s", (System.currentTimeMillis() - startTime) / 1000
 	}
+
 }

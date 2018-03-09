@@ -1,7 +1,9 @@
 import myapp.DummyBean
 import myapp.DummyGrailsController
 import myapp.DummySpringController
+import myapp.DummyWebSocket
 import myapp.ProfilingGrailsSimpAnnotationMethodMessageHandler
+import myapp.ProfilingGrailsWebSocketAnnotationMethodMessageHandler
 import myapp.ProfilingSpringSimpAnnotationMethodMessageHandler
 import myapp.WebSocketConfig
 
@@ -9,8 +11,6 @@ import myapp.WebSocketConfig
 beans = {
 
 	webSocketConfig WebSocketConfig
-	profilingGrailsSimpAnnotationMethodMessageHandler ProfilingGrailsSimpAnnotationMethodMessageHandler
-	profilingSpringSimpAnnotationMethodMessageHandler ProfilingSpringSimpAnnotationMethodMessageHandler
 
 	1.upto(3000) {
 		"dummyBean${it}" DummyBean
@@ -25,6 +25,13 @@ beans = {
 
 	1.upto(300) {
 		"dummySpringController${it}"(DummySpringController) {  bean ->
+			bean.autowire = "byName"
+			bean.lazyInit = true
+		}
+	}
+
+	1.upto(300) {
+		"dummyWebSocket${it}"(DummyWebSocket) { bean ->
 			bean.autowire = "byName"
 			bean.lazyInit = true
 		}
